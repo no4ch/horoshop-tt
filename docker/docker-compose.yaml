@@ -1,0 +1,10 @@
+services:
+    app:
+        build:
+            context: ./services/app
+            dockerfile: Dockerfile
+        volumes:
+            - ../app:/var/www/html
+        tty: true
+        ports:
+            - "8080:8080"
