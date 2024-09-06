@@ -1,5 +1,7 @@
 FROM alpine:3.20.0
 
+ARG APP_USER_ID=1000
+
 WORKDIR /var/www/html/
 
 # install base system
@@ -29,11 +31,22 @@ RUN apk add php83-simplexml \
     php83-openssl \
     php83-curl
 
+RUN apk add php83-pdo_mysql
+
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=2.6.2
 
 RUN apk add --no-cache bash && \
     curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.alpine.sh' | bash && \
     apk add symfony-cli
+
+RUN if [ -n "${APP_USER_ID}" ]; then \
+	delgroup www-data && \
+	addgroup -g ${APP_USER_ID} www-data && \
+	adduser -u ${APP_USER_ID} -G www-data -D www-data && \
+    chown -R www-data:www-data /var/www/html; \
+fi
+
+USER www-data
 
 CMD symfony local:server:start --port=8080

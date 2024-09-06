@@ -8,3 +8,24 @@ services:
         tty: true
         ports:
             - "8080:8080"
+        depends_on:
+            - database
+
+    database:
+        container_name: db
+        image: mysql:8.3.0
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+
+    phpmyadmin:
+        container_name: pma
+        image: phpmyadmin:5.2.1
+        restart: on-failure
+        ports:
+            - "8081:80"
+        environment:
+            MYSQL_ROOT_PASSWORD: 'root'
+            PMA_HOST: 'database'
+            PMA_PORT: 3306
+        depends_on:
+            - database
