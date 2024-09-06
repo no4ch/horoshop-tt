@@ -1,3 +1,4 @@
+# all credentials can be taken from app .env directly
 services:
     app:
         build:
@@ -16,6 +17,8 @@ services:
         image: mysql:8.3.0
         environment:
             MYSQL_ROOT_PASSWORD: root
+        volumes:
+            - ./services/database/dumps:/database/dumps
 
     phpmyadmin:
         container_name: pma
