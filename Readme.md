@@ -4,14 +4,14 @@
 
 - clone this project to your `<project dir>`
 
+- copy `.env.example` to `.env` in `app`/`docker` directories of `<project dir>`
+
 - cd `<project dir>/docker`
 
 - run
 ```shell
-docker compose up -d
+docker compose up -d --build
 ```
-
-- copy `.env.example` to `.env` in `app`/`docker` directories of `<project dir>`
 
 - run
 ```shell
