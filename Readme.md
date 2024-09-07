@@ -10,11 +10,17 @@
 ```shell
 docker compose up -d
 ```
-- run `docker compose exec app composer install`
+- run
+```shell
+docker compose exec app composer install
+```
 
 - copy `.env.example` to `.env` in `app`/`docker` directories of `<project dir>`
 
-- run `docker compose exec database mysql -u root --password=root`
+- run
+```shell
+docker compose exec database mysql -u root --password=root
+```
 
 - run inside `SOURCE /database/dumps/horoshop_db.sql` and `exit`
 
@@ -89,7 +95,7 @@ curl -X PUT http://localhost:8080/v1/api/users/2 \
 }'
 ```
 
-### Delete user (admin only, Idempotent)
+#### Delete user (admin only, Idempotent)
 
 ```shell
 curl -X DELETE http://localhost:8080/v1/api/users/3 \
@@ -97,8 +103,3 @@ curl -X DELETE http://localhost:8080/v1/api/users/3 \
 -H "Accept: application/json" \
 -H "Authorization: Bearer <testAdmin token>"
 ```
-
-curl -X DELETE http://localhost:8080/v1/api/users/3 \
--H "Content-Type: application/json" \
--H "Accept: application/json" \
--H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwaXJlcyI6MTcyNTc1MDkwMH0.ErffNmJ3xCpLgE82gmKe_IuYSHFSg7yRh3b1zOwp9qc"
