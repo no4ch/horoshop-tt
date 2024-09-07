@@ -10,12 +10,13 @@
 ```shell
 docker compose up -d
 ```
+
+- copy `.env.example` to `.env` in `app`/`docker` directories of `<project dir>`
+
 - run
 ```shell
 docker compose exec app composer install
 ```
-
-- copy `.env.example` to `.env` in `app`/`docker` directories of `<project dir>`
 
 - run
 ```shell
